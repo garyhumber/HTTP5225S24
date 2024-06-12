@@ -1,6 +1,7 @@
 <?php
-  if(isset($_POST['addSchool'])){
+  if(isset($_POST['updateSchool'])){
     // print_r($_POST);
+    $id = $_POST['id'];
     $schoolName = $_POST['schoolName'];
     $schoolLevel = $_POST['schoolLevel'];
     $phone = $_POST['phone'];
@@ -8,8 +9,8 @@
 
     // Connection string
     include('../reusable/con.php');
-    $query = "INSERT INTO schools (`School Name`, `School Level`, `Phone`, `Email`) VALUES ('$schoolName', '$schoolLevel', '$phone', '$email')";
-
+    $query = "UPDATE `schools` SET `School Name`='$schoolName',`School Level`='$schoolLevel',`Phone`='$phone',`Email`='$email' WHERE `id`='$id'";
+    
     $school = mysqli_query($connect, $query);
 
     if($school){

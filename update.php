@@ -1,4 +1,10 @@
-<?php include('reusable/con.php'); ?>
+<?php 
+  include('reusable/con.php'); 
+  $id = $_GET['id'];
+  $query = "SELECT * FROM schools WHERE `id` = '$id'";
+  $school = mysqli_query($connect, $query);
+  $result = $school -> fetch_assoc();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +19,7 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <h1 class="display-4 mt-5 mb-5">All Schools</h1>
+          <h1 class="display-4 mt-5 mb-5">Update <?php echo $result['School Name'] ?></h1>
         </div>
       </div>
     </div>
@@ -23,24 +29,25 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <form action="inc/addSchool.php" method="POST">
+          <form action="inc/updateSchool.php" method="POST">
+            <input type="hidden" value="<?php echo $id ?>" name="id">
             <div class="mb-3">
               <label for="schoolName" class="form-label">School Name</label>
-              <input type="text" class="form-control" id="schoolName" name="schoolName" aria-describedby="schoolName">
+              <input type="text" class="form-control" id="schoolName" name="schoolName" aria-describedby="schoolName" value="<?php echo $result['School Name'] ?>">
             </div>
             <div class="mb-3">
               <label for="schoolLevel" class="form-label">School Level</label>
-              <input type="text" class="form-control" id="schoolLevel" name="schoolLevel">
+              <input type="text" class="form-control" id="schoolLevel" name="schoolLevel" value="<?php echo $result['School Level'] ?>">
             </div>
             <div class="mb-3">
               <label for="phone" class="form-label">Phone</label>
-              <input type="text" class="form-control" id="phone" name="phone">
+              <input type="text" class="form-control" id="phone" name="phone" value="<?php echo $result['Phone'] ?>"> 
             </div>
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="email" name="email">
+              <input type="email" class="form-control" id="email" name="email" value="<?php echo $result['Email'] ?>">
             </div>
-            <button type="submit" class="btn btn-primary" name="addSchool">Add School</button>
+            <button type="submit" class="btn btn-primary" name="updateSchool">Update</button>
           </form>
         </div>
       </div>

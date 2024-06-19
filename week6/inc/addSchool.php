@@ -8,7 +8,16 @@
 
     // Connection string
     include('../reusable/con.php');
-    $query = "INSERT INTO schools (`School Name`, `School Level`, `Phone`, `Email`) VALUES ('$schoolName', '$schoolLevel', '$phone', '$email')";
+    $query = "INSERT INTO schools 
+                  (`School Name`, 
+                    `School Level`, 
+                    `Phone`, 
+                    `Email`) 
+                  VALUES (
+                    '"  . mysqli_real_escape_string($connect, $_POST['schoolName']) . "',
+                    '"  . mysqli_real_escape_string($connect, $_POST['schoolLevel']) . "',
+                    '"  . mysqli_real_escape_string($connect, $_POST['phone']) . "',
+                    '"  . mysqli_real_escape_string($connect, $_POST['email']) . "')";
 
     $school = mysqli_query($connect, $query);
 

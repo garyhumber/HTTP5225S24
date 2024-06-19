@@ -28,7 +28,7 @@
 
           foreach($schools as $school){
             echo '<div class="col-md-4 mt-2 mb-2">
-                    <div class="card ' . $bgClass . '">
+                    <div class="card">
                       <div class="card-body">
                         <h5 class="card-title">' . $school['School Name'] . '</h5>
                         <p class="card-text">' . $school['School Level'] . '</p>
